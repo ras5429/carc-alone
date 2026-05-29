@@ -20,8 +20,7 @@ def get_feature_center(feature):
     return (avg_x, avg_y)
 
 def create_full_game_deck():
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(current_dir, "assets", "tiles.csv")
+    csv_path = os.path.join("assets", "tiles.csv")
     deck, starter_tile = [], None
     if not os.path.exists(csv_path): return [], None
     with open(csv_path, mode='r', encoding='utf-8') as f:
@@ -30,7 +29,7 @@ def create_full_game_deck():
             img, ori, qty, feat_flags = row['image'], row['orientation'], int(row['quantity']), row['feature']
             has_shield, has_abbey, is_starter = 'S' in feat_flags, 'A' in feat_flags, 'X' in feat_flags
             n, e, s, w = ori[0], ori[1], ori[2], ori[3]
-            json_path = os.path.join(current_dir, "assets", os.path.splitext(img)[0] + ".json")
+            json_path = os.path.join("assets", os.path.splitext(img)[0] + ".json")
             deck_item_features, tile_id = None, img
             if os.path.exists(json_path):
                 try:
@@ -58,8 +57,7 @@ def load_and_render_tile(surface, x, y, size, tile, is_preview=False, show_name=
     img_size = int(size)
     cache_key = (tile.filename, img_size)
     if cache_key not in IMAGE_CACHE:
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        asset_path = os.path.join(current_dir, "assets", tile.filename)
+        asset_path = os.path.join("assets", tile.filename)
         if not os.path.exists(asset_path):
             fallback = pygame.Surface((img_size, img_size))
             fallback.fill((200, 50, 50))
