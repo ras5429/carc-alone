@@ -1,0 +1,25 @@
+{
+  "id": "Base_Game_C1_Tile_12",
+  "image": "Base_Game_C1_Tile_12.jpg",
+  "orientation": "CFCF",
+  "is_starter": false,
+  "quantity": 2,
+  "features": [
+    {
+      "type": "city",
+      "description": "City Bridge (North to South)",
+      "sockets": [0, 1, 2, 6, 7, 8],
+      "shield": true
+    },
+    {
+      "type": "field",
+      "description": "East Field",
+      "sockets": [3, 4, 5]
+    },
+    {
+      "type": "field",
+      "description": "West Field",
+      "sockets": [9, 10, 11]
+    }
+  ]
+}

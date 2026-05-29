@@ -1,0 +1,26 @@
+{
+  "id": "Base_Game_C1_Tile_11",
+  "image": "Base_Game_C1_Tile_11.jpg",
+  "orientation": "CFCF",
+  "is_starter": false,
+  "quantity": 3,
+  "features": [
+    {
+      "type": "city",
+      "description": "North City Cap",
+      "sockets": [0, 1, 2],
+      "shield": false
+    },
+    {
+      "type": "city",
+      "description": "South City Cap",
+      "sockets": [6, 7, 8],
+      "shield": false
+    },
+    {
+      "type": "field",
+      "description": "Passing Meadow",
+      "sockets": [3, 4, 5, 9, 10, 11]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "Base_Game_C1_Tile_14",
+  "image": "Base_Game_C1_Tile_14.jpg",
+  "orientation": "CFFF",
+  "is_starter": false,
+  "quantity": 5,
+  "features": [
+    {
+      "type": "city",
+      "description": "North City Cap",
+      "sockets": [0, 1, 2],
+      "shield": false
+    },
+    {
+      "type": "field",
+      "description": "Large Open Meadow",
+      "sockets": [3, 4, 5, 6, 7, 8, 9, 10, 11]
+    }
+  ]
+}

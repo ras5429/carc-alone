@@ -1,0 +1,30 @@
+{
+  "id": "Base_Game_C1_Tile_17",
+  "image": "Base_Game_C1_Tile_17.jpg",
+  "orientation": "CRRF",
+  "is_starter": false,
+  "quantity": 3,
+  "features": [
+    {
+      "type": "city",
+      "description": "North City Cap",
+      "sockets": [0, 1, 2],
+      "shield": false
+    },
+    {
+      "type": "road",
+      "description": "Curved Road (East to South)",
+      "sockets": [4, 7]
+    },
+    {
+      "type": "field",
+      "description": "Inner Meadow (North/West area)",
+      "sockets": [3, 8, 9, 10, 11]
+    },
+    {
+      "type": "field",
+      "description": "Outer SE Meadow",
+      "sockets": [5, 6]
+    }
+  ]
+}

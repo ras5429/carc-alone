@@ -1,0 +1,30 @@
+{
+  "id": "Base_Game_C1_Tile_10",
+  "image": "Base_Game_C1_Tile_10.jpg",
+  "orientation": "CCRR",
+  "is_starter": false,
+  "quantity": 2,
+  "features": [
+    {
+      "type": "city",
+      "description": "Corner City (North and East)",
+      "sockets": [0, 1, 2, 3, 4, 5],
+      "shield": true
+    },
+    {
+      "type": "road",
+      "description": "Curved Road (South to West)",
+      "sockets": [7, 10]
+    },
+    {
+      "type": "field",
+      "description": "Inner Meadow (Between City and Road)",
+      "sockets": [6, 11]
+    },
+    {
+      "type": "field",
+      "description": "Outer SW Meadow",
+      "sockets": [8, 9]
+    }
+  ]
+}

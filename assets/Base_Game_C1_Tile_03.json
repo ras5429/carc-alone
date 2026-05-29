@@ -1,0 +1,20 @@
+{
+  "id": "Base_Game_C1_Tile_03",
+  "image": "Base_Game_C1_Tile_03.jpg",
+  "orientation": "CCCF",
+  "is_starter": false,
+  "quantity": 3,
+  "features": [
+    {
+      "type": "city",
+      "description": "City Cap with Shield",
+      "sockets": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      "shield": true
+    },
+    {
+      "type": "field",
+      "description": "Isolated West Field",
+      "sockets": [9, 10, 11]
+    }
+  ]
+}

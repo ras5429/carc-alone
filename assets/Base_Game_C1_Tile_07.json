@@ -1,0 +1,20 @@
+{
+  "id": "Base_Game_C1_Tile_07",
+  "image": "Base_Game_C1_Tile_07.jpg",
+  "orientation": "CCFF",
+  "is_starter": false,
+  "quantity": 2,
+  "features": [
+    {
+      "type": "city",
+      "description": "Corner City (North and East)",
+      "sockets": [0, 1, 2, 3, 4, 5],
+      "shield": true
+    },
+    {
+      "type": "field",
+      "description": "L-Shaped Meadow (South and West)",
+      "sockets": [6, 7, 8, 9, 10, 11]
+    }
+  ]
+}
