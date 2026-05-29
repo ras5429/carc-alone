@@ -21,12 +21,8 @@ async def main():
 
     board = Board()
     deck, starter_tile = create_full_game_deck()
-    
-    if not starter_tile:
-        print("FATAL: Starter tile not found. Assets may not be bundled correctly.")
-        return
-
-    board.place_tile(0, 0, starter_tile)
+    if starter_tile:
+        board.place_tile(0, 0, starter_tile)
     active_tile = deck.pop() if deck else None
 
     # Game Phase States
@@ -40,10 +36,6 @@ async def main():
     history_log = []
     show_history = False
     history_scroll = 0
-
-    # UI Rects for Mobile Touch
-    rotate_btn_rect = pygame.Rect(SCREEN_SIZE - 145, SCREEN_SIZE - 145, 130, 130)
-    skip_btn_rect = pygame.Rect(20, SCREEN_SIZE - 70, 180, 50)
 
     history_log.append(f"START: Placed {starter_tile.name} at (0, 0)")
 
@@ -97,23 +89,6 @@ async def main():
                     if pygame.Rect(SCREEN_SIZE - 100, 20, 80, 30).collidepoint(event.pos):
                         show_history = not show_history
                         history_scroll = 0
-                        continue
-                    
-                    # Check for Virtual Rotate Button (Mobile)
-                    if rotate_btn_rect.collidepoint(event.pos) and active_tile and game_state == PLACING_TILE:
-                        active_tile.rotate_clockwise()
-                        continue
-
-                    # Check for Virtual Skip Button (Mobile)
-                    if skip_btn_rect.collidepoint(event.pos) and game_state == PLACING_MEEPLE:
-                        game_state = PLACING_TILE
-                        s, m, fx = board.evaluate_scoring(history_log)
-                        score += s
-                        meeple_count += m
-                        score_effects.extend(fx)
-                        
-                        active_tile = deck.pop() if deck else None
-                        last_placed_pos = None
                         continue
 
                 if event.button == 1 and active_tile and game_state == PLACING_TILE and not show_history: 
@@ -251,28 +226,11 @@ async def main():
             pygame.draw.rect(screen, (255, 255, 255), (px-5, py-5, p_size+10, p_size+10), 2)
             load_and_render_tile(screen, px, py, p_size, active_tile, is_preview=False, show_name=True)
             
-            # Rotate Button Label for Mobile
-            font_small = pygame.font.SysFont("Arial", 12, bold=True)
-            label = font_small.render("TAP TO ROTATE", True, (255, 255, 0))
-            screen.blit(label, (SCREEN_SIZE - 130, SCREEN_SIZE - 35))
-            
             font = pygame.font.SysFont("Arial", 16, bold=True)
             ui_str = f"SCORE: {score} | MEEPLES: {meeple_count} | DECK: {len(deck)} | R = Rotate"
             ui_overlay = font.render(ui_str, True, (240, 240, 240))
             screen.blit(ui_overlay, (20, 20))
             screen.blit(font.render("Drag Right-Click to Pan | Scroll to Zoom", True, (150, 150, 150)), (20, 45))
-
-        # Draw Skip Button for Mobile
-        if game_state == PLACING_MEEPLE and not show_history:
-            pygame.draw.rect(screen, (70, 70, 70), skip_btn_rect)
-            pygame.draw.rect(screen, (255, 255, 255), skip_btn_rect, 2)
-            skip_font = pygame.font.SysFont("Arial", 16, bold=True)
-            skip_text = skip_font.render("SKIP MEEPLE", True, (255, 255, 255))
-            text_rect = skip_text.get_rect(center=skip_btn_rect.center)
-            screen.blit(skip_text, text_rect)
-            
-            prompt_font = pygame.font.SysFont("Arial", 14, bold=True)
-            screen.blit(prompt_font.render("Tap feature or use SKIP", True, (255, 255, 0)), (20, 85))
 
         btn_rect = pygame.Rect(SCREEN_SIZE - 100, 20, 80, 30)
         pygame.draw.rect(screen, (50, 50, 50), btn_rect)

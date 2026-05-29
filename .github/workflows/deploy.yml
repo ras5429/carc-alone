@@ -23,7 +23,7 @@ jobs:
 
       - name: Build Web App
         run: |
-          # Compile the python code to WebAssembly, excluding the heavy .venv folder
+          # Compile to WASM, disabling sound format errors to ignore incompatible files in .venv
           uv run python -m pygbag --build --no_opt --disable-sound-format-error main.py
 
       - name: Upload artifact
