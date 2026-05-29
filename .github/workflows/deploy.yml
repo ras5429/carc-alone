@@ -12,6 +12,9 @@ permissions:
 jobs:
   build-n-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -21,7 +24,7 @@ jobs:
       - name: Build Web App
         run: |
           # Compile the python code to WebAssembly
-          uv run python -m pygbag --build --no_opt main.py
+          uv run python -m pygbag --build --no_opt carcassonne.py
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -31,6 +34,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        environment:
-          name: github-pages
-          url: ${{ steps.deployment.outputs.page_url }}
