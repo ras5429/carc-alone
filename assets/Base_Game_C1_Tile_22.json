@@ -1,0 +1,24 @@
+{
+  "id": "Base_Game_C1_Tile_22",
+  "image": "Base_Game_C1_Tile_22.jpg",
+  "orientation": "FRFR",
+  "is_starter": false,
+  "quantity": 8,
+  "features": [
+    {
+      "type": "road",
+      "description": "Straight Road (East to West)",
+      "sockets": [4, 10]
+    },
+    {
+      "type": "field",
+      "description": "North Meadow",
+      "sockets": [0, 1, 2, 3, 11]
+    },
+    {
+      "type": "field",
+      "description": "South Meadow",
+      "sockets": [5, 6, 7, 8, 9]
+    }
+  ]
+}

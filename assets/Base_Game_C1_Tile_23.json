@@ -1,0 +1,39 @@
+{
+  "id": "Base_Game_C1_Tile_23",
+  "image": "Base_Game_C1_Tile_23.jpg",
+  "orientation": "FRRR",
+  "is_starter": false,
+  "quantity": 4,
+  "features": [
+    {
+      "type": "road",
+      "description": "East Road Segment",
+      "sockets": [4]
+    },
+    {
+      "type": "road",
+      "description": "South Road Segment",
+      "sockets": [7]
+    },
+    {
+      "type": "road",
+      "description": "West Road Segment",
+      "sockets": [10]
+    },
+    {
+      "type": "field",
+      "description": "North Meadow",
+      "sockets": [0, 1, 2, 3, 11]
+    },
+    {
+      "type": "field",
+      "description": "South East Meadow",
+      "sockets": [5, 6]
+    },
+    {
+      "type": "field",
+      "description": "South West Meadow",
+      "sockets": [8, 9]
+    }
+  ]
+}

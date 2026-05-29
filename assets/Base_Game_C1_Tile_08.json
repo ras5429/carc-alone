@@ -1,0 +1,26 @@
+{
+  "id": "Base_Game_C1_Tile_08",
+  "image": "Base_Game_C1_Tile_08.jpg",
+  "orientation": "CCFF",
+  "is_starter": false,
+  "quantity": 2,
+  "features": [
+    {
+      "type": "city",
+      "description": "North City Cap",
+      "sockets": [0, 1, 2],
+      "shield": false
+    },
+    {
+      "type": "city",
+      "description": "East City Cap",
+      "sockets": [3, 4, 5],
+      "shield": false
+    },
+    {
+      "type": "field",
+      "description": "Connected Meadow",
+      "sockets": [6, 7, 8, 9, 10, 11]
+    }
+  ]
+}

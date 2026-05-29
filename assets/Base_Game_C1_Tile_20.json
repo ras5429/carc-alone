@@ -1,0 +1,24 @@
+{
+  "id": "Base_Game_C1_Tile_20",
+  "image": "Base_Game_C1_Tile_20.jpg",
+  "orientation": "FFFR",
+  "is_starter": false,
+  "quantity": 2,
+  "features": [
+    {
+      "type": "A",
+      "description": "Central Abbey",
+      "sockets": []
+    },
+    {
+      "type": "road",
+      "description": "Road leading to Abbey",
+      "sockets": [10]
+    },
+    {
+      "type": "field",
+      "description": "Surrounding Meadow",
+      "sockets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11]
+    }
+  ]
+}

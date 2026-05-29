@@ -1,0 +1,24 @@
+{
+  "id": "Base_Game_C1_Tile_21",
+  "image": "Base_Game_C1_Tile_21.jpg",
+  "orientation": "FFRR",
+  "is_starter": false,
+  "quantity": 9,
+  "features": [
+    {
+      "type": "road",
+      "description": "Curved Road (South to West)",
+      "sockets": [7, 10]
+    },
+    {
+      "type": "field",
+      "description": "Outer Meadow",
+      "sockets": [0, 1, 2, 3, 4, 5, 6, 11]
+    },
+    {
+      "type": "field",
+      "description": "Inner SW Meadow",
+      "sockets": [8, 9]
+    }
+  ]
+}

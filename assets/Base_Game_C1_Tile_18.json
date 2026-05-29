@@ -1,0 +1,37 @@
+{
+  "id": "Base_Game_C1_Tile_18",
+  "image": "Base_Game_C1_Tile_18.jpg",
+  "orientation": "CRRR",
+  "is_starter": false,
+  "quantity": 3,
+  "features": [
+    {
+      "type": "city",
+      "description": "North City Cap",
+      "sockets": [0, 1, 2],
+      "shield": false
+    },
+    {
+      "type": "road",
+      "description": "East Road Segment",
+      "sockets": [4]
+    },
+    {
+      "type": "road",
+      "description": "South Road Segment",
+      "sockets": [7]
+    },
+    {
+      "type": "road",
+      "description": "West Road Segment",
+      "sockets": [10]
+    },
+    {
+      "type": "field",
+      "description": "Top Meadow (Under city wall)",
+      "sockets": [3, 11]
+    },
+    { "type": "field", "description": "SE Meadow", "sockets": [5, 6] },
+    { "type": "field", "description": "SW Meadow", "sockets": [8, 9] }
+  ]
+}
