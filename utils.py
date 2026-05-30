@@ -20,36 +20,68 @@ def get_feature_center(feature):
     return (avg_x, avg_y)
 
 def create_full_game_deck():
-    csv_path = os.path.join("assets", "tiles.csv")
+    assets_dir = "assets"
     deck, starter_tile = [], None
-    if not os.path.exists(csv_path): return [], None
-    with open(csv_path, mode='r', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            img, ori, qty, feat_flags = row['image'], row['orientation'], int(row['quantity']), row['feature']
-            has_shield, has_abbey, is_starter = 'S' in feat_flags, 'A' in feat_flags, 'X' in feat_flags
-            n, e, s, w = ori[0], ori[1], ori[2], ori[3]
-            json_path = os.path.join("assets", os.path.splitext(img)[0] + ".json")
-            deck_item_features, tile_id = None, img
-            if os.path.exists(json_path):
-                try:
-                    with open(json_path, 'r') as jf:
-                        data = json.load(jf)
-                        tile_id = data.get("id", img)
-                        type_map = {"city": CITY, "road": ROAD, "field": FIELD, "a": "A", "c": CITY, "r": ROAD, "f": FIELD}
-                        deck_item_features = [{"type": type_map.get(f["type"].lower(), f["type"]), "edges": f["sockets"], 
-                                              "shield": f.get("shield", False), "meeple_pos": f.get("meeple_pos")} for f in data.get("features", [])]
-                        if any(f.get("shield") for f in data.get("features", []) if f.get("type") == "city"): has_shield = True
-                        if data.get("is_starter"): is_starter = True
-                except Exception as err: print(f"Error loading JSON {json_path}: {err}")
-            if deck_item_features is None: continue
-            if has_abbey and not any(f['type'] == 'A' for f in deck_item_features):
-                deck_item_features.append({"type": "A", "edges": []})
-            if is_starter:
-                starter_tile = Tile(tile_id, n, e, s, w, img, copy_features(deck_item_features), has_shield, has_abbey)
-                qty -= 1
-            for _ in range(qty):
-                deck.append(Tile(tile_id, n, e, s, w, img, copy_features(deck_item_features), has_shield, has_abbey))
+    tile_counts = {}
+    skipped_tiles = []
+    total_loaded_count = 0
+    
+    if not os.path.exists(assets_dir):
+        print(f"FATAL: {assets_dir} directory not found.")
+        return [], None
+
+    for filename in os.listdir(assets_dir):
+        if not filename.endswith(".json"):
+            continue
+            
+        json_path = os.path.join(assets_dir, filename)
+        try:
+            with open(json_path, 'r') as jf:
+                data = json.load(jf)
+                
+                # Required fields now come directly from JSON
+                img = data.get("image")
+                ori = data.get("orientation")
+                qty = int(data.get("quantity", 1))
+                tile_id = data.get("id", filename.replace(".json", ""))
+                is_starter = data.get("is_starter", False)
+
+                if not img or not ori:
+                    skipped_tiles.append(f"{filename} (Missing 'image' or 'orientation')")
+                    continue
+
+                n, e, s, w = ori[0], ori[1], ori[2], ori[3]
+                type_map = {"city": CITY, "road": ROAD, "field": FIELD, "a": "A", "c": CITY, "r": ROAD, "f": FIELD}
+                deck_item_features = [{"type": type_map.get(f["type"].lower(), f["type"]), "edges": f["sockets"], 
+                                      "shield": f.get("shield", False), "meeple_pos": f.get("meeple_pos")} for f in data.get("features", [])]
+                
+                has_shield = any(f.get("shield") for f in deck_item_features if f.get("type") == CITY)
+                has_abbey = any(f.get("type") == "A" for f in deck_item_features)
+
+                tile_counts[tile_id] = qty
+                if is_starter:
+                    starter_tile = Tile(tile_id, n, e, s, w, img, copy_features(deck_item_features), has_shield, has_abbey)
+                    qty -= 1
+                    total_loaded_count += 1
+                
+                for _ in range(qty):
+                    deck.append(Tile(tile_id, n, e, s, w, img, copy_features(deck_item_features), has_shield, has_abbey))
+                    total_loaded_count += 1
+        except Exception as err:
+            skipped_tiles.append(f"{filename} (Error: {err})")
+
+    print("--- TILE QUANTITY BREAKDOWN (From JSON) ---")
+    for name, count in sorted(tile_counts.items()):
+        print(f"  {name}: {count}")
+    print("------------------------------------------")
+    
+    if skipped_tiles:
+        print("--- SKIPPED TILES (Errors/Missing Files) ---")
+        for reason in skipped_tiles:
+            print(f"  !! {reason}")
+        print("--------------------------------------------")
+
+    print(f"DECK LOADED: {total_loaded_count} total tiles (including starter).")
     random.shuffle(deck)
     return deck, starter_tile
 
@@ -74,8 +106,15 @@ def load_and_render_tile(surface, x, y, size, tile, is_preview=False, show_name=
                 fallback.fill((200, 0, 0))
                 IMAGE_CACHE[cache_key] = fallback
     rotated_texture = pygame.transform.rotate(IMAGE_CACHE[cache_key], -tile.rotation)
-    if is_preview: rotated_texture.set_alpha(150) 
-    surface.blit(rotated_texture, (x, y))
+    
+    if is_preview:
+        # Render the tile opaque (as it looks normally) to ensure it is visible during staging
+        surface.blit(rotated_texture, (x, y))
+        # High-visibility purple border as requested to indicate staging status
+        pygame.draw.rect(surface, (255, 0, 255), (x, y, img_size, img_size), 4)
+    else:
+        surface.blit(rotated_texture, (x, y))
+
     if show_name:
         debug_font = pygame.font.SysFont("Arial", 12)
         surface.blit(debug_font.render(tile.name, True, (255, 255, 255)), (x, y + img_size + 2))

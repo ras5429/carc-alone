@@ -3,7 +3,7 @@
   "image": "Base_Game_C1_Tile_03.jpg",
   "orientation": "CCCF",
   "is_starter": false,
-  "quantity": 3,
+  "quantity": 1,
   "features": [
     {
       "type": "city",

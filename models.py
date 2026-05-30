@@ -6,14 +6,13 @@ class ScoreEffect:
     def __init__(self, text, x, y):
         self.text = text
         self.x, self.y = x, y
-        self.timer = 240 # 4 seconds at 60fps
+        self.timer = 480 # 8 seconds at 60fps
         self.alpha = 255
 
     def update(self):
         self.timer -= 1
-        self.y -= 0.5
-        if self.timer < 120: # Fade out in the last 2 seconds
-            self.alpha = max(0, int((self.timer / 120) * 255))
+        if self.timer < 180: # Fade out in the last 3 seconds
+            self.alpha = max(0, int((self.timer / 180) * 255))
 
 class Tile:
     def __init__(self, name, north, east, south, west, filename, features=None, has_shield=False, has_abbey=False):
@@ -77,7 +76,7 @@ class Board:
         scored_points = 0
         returned_meeples = 0
 
-        for (x, y), tile in list(self.grid.items()):
+        for (x, y), tile in self.grid.items():
             if tile.meeple:
                 feat_idx, _ = tile.meeple
                 feat = tile.features[feat_idx]
@@ -124,6 +123,53 @@ class Board:
                             log.append(f"  -> {m_count} meeple(s) returned")
                                     
         return scored_points, returned_meeples, new_effects
+
+    def calculate_final_scores(self, log):
+        """Scores incomplete features at the end of the game."""
+        final_points = 0
+        final_effects = []
+        
+        log.append("--- FINAL SCORING ---")
+        
+        for (x, y), tile in list(self.grid.items()):
+            if tile.meeple:
+                feat_idx, _ = tile.meeple
+                feat = tile.features[feat_idx]
+                f_type = feat['type']
+                
+                if f_type == 'A': # Cloister/Abbey
+                    neighbors = sum(1 for dx in [-1,0,1] for dy in [-1,0,1] if (dx!=0 or dy!=0) and (x+dx, y+dy) in self.grid)
+                    points = 1 + neighbors
+                    final_points += points
+                    msg = f"Incomplete Cloister: +{points} pts"
+                    log.append(msg)
+                    final_effects.append(ScoreEffect(msg, x, y))
+                
+                elif f_type in [CITY, ROAD]:
+                    components, _ = self.trace_feature(x, y, feat_idx)
+                    unique_tiles = set((cx, cy) for cx, cy, ci in components)
+                    
+                    if f_type == CITY:
+                        # Incomplete cities get 1 pt per tile + 1 pt per shield
+                        shields = sum(1 for cx, cy, ci in components if self.grid[(cx, cy)].features[ci].get('shield'))
+                        points = len(unique_tiles) + shields
+                        f_name = "City"
+                    else: # ROAD
+                        points = len(unique_tiles)
+                        f_name = "Road"
+                        
+                    final_points += points
+                    msg = f"Incomplete {f_name}: +{points} pts"
+                    log.append(msg)
+                    final_effects.append(ScoreEffect(msg, x, y))
+                
+                # Remove meeple to avoid double counting if the same feature has multiple meeples
+                # (Standard rules dictate the player with the most meeples gets full points, 
+                # but this keeps it simple for a single player version)
+                tile.meeple = None
+                
+        log.append(f"TOTAL FINAL SCORE: {final_points}")
+        return final_points, final_effects
 
     def is_feature_occupied(self, x, y, feature_index, visited=None):
         # (Standard recursive check using trace_feature logic or similar)
