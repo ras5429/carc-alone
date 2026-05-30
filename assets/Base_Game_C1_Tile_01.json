@@ -22,7 +22,7 @@
         10,
         11
       ],
-      "shield": false,
+      "shield": true,
       "meeple_pos": [
         0.45,
         0.497
