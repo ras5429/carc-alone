@@ -8,17 +8,43 @@
     {
       "type": "A",
       "description": "Central Abbey",
-      "sockets": []
+      "sockets": [],
+      "meeple_pos": [
+        0.49,
+        0.472
+      ]
     },
     {
       "type": "road",
       "description": "Road leading to Abbey",
-      "sockets": [10]
+      "sockets": [
+        10
+      ],
+      "meeple_pos": [
+        0.175,
+        0.423
+      ]
     },
     {
       "type": "field",
       "description": "Surrounding Meadow",
-      "sockets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11]
+      "sockets": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11
+      ],
+      "meeple_pos": [
+        0.757,
+        0.72
+      ]
     }
   ]
 }

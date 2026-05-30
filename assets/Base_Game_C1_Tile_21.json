@@ -8,17 +8,44 @@
     {
       "type": "road",
       "description": "Curved Road (South to West)",
-      "sockets": [7, 10]
+      "sockets": [
+        7,
+        10
+      ],
+      "meeple_pos": [
+        0.405,
+        0.483
+      ]
     },
     {
       "type": "field",
       "description": "Outer Meadow",
-      "sockets": [0, 1, 2, 3, 4, 5, 6, 11]
+      "sockets": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        11
+      ],
+      "meeple_pos": [
+        0.702,
+        0.317
+      ]
     },
     {
       "type": "field",
       "description": "Inner SW Meadow",
-      "sockets": [8, 9]
+      "sockets": [
+        8,
+        9
+      ],
+      "meeple_pos": [
+        0.228,
+        0.727
+      ]
     }
   ]
 }

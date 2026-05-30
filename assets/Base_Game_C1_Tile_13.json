@@ -8,18 +8,45 @@
     {
       "type": "city",
       "description": "City Bridge (North to South)",
-      "sockets": [0, 1, 2, 6, 7, 8],
-      "shield": false
+      "sockets": [
+        0,
+        1,
+        2,
+        6,
+        7,
+        8
+      ],
+      "shield": false,
+      "meeple_pos": [
+        0.583,
+        0.423
+      ]
     },
     {
       "type": "field",
       "description": "East Field",
-      "sockets": [3, 4, 5]
+      "sockets": [
+        3,
+        4,
+        5
+      ],
+      "meeple_pos": [
+        0.855,
+        0.483
+      ]
     },
     {
       "type": "field",
       "description": "West Field",
-      "sockets": [9, 10, 11]
+      "sockets": [
+        9,
+        10,
+        11
+      ],
+      "meeple_pos": [
+        0.08,
+        0.458
+      ]
     }
   ]
 }

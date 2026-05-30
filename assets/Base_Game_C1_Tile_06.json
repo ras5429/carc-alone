@@ -8,13 +8,35 @@
     {
       "type": "city",
       "description": "Corner City (North and East)",
-      "sockets": [0, 1, 2, 3, 4, 5],
-      "shield": false
+      "sockets": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "shield": false,
+      "meeple_pos": [
+        0.708,
+        0.185
+      ]
     },
     {
       "type": "field",
       "description": "L-Shaped Meadow (South and West)",
-      "sockets": [6, 7, 8, 9, 10, 11]
+      "sockets": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "meeple_pos": [
+        0.322,
+        0.608
+      ]
     }
   ]
 }

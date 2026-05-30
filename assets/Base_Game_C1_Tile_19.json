@@ -8,12 +8,33 @@
     {
       "type": "field",
       "description": "Surrounding Meadow",
-      "sockets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+      "sockets": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "meeple_pos": [
+        0.71,
+        0.743
+      ]
     },
     {
       "type": "A",
       "description": "Central Abbey",
-      "sockets": []
+      "sockets": [],
+      "meeple_pos": [
+        0.435,
+        0.455
+      ]
     }
   ]
 }

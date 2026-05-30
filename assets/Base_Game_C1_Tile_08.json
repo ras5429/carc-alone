@@ -8,19 +8,46 @@
     {
       "type": "city",
       "description": "North City Cap",
-      "sockets": [0, 1, 2],
-      "shield": false
+      "sockets": [
+        0,
+        1,
+        2
+      ],
+      "shield": false,
+      "meeple_pos": [
+        0.428,
+        0.042
+      ]
     },
     {
       "type": "city",
       "description": "East City Cap",
-      "sockets": [3, 4, 5],
-      "shield": false
+      "sockets": [
+        3,
+        4,
+        5
+      ],
+      "shield": false,
+      "meeple_pos": [
+        0.862,
+        0.425
+      ]
     },
     {
       "type": "field",
       "description": "Connected Meadow",
-      "sockets": [6, 7, 8, 9, 10, 11]
+      "sockets": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "meeple_pos": [
+        0.317,
+        0.562
+      ]
     }
   ]
 }

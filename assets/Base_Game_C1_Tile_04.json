@@ -3,28 +3,60 @@
   "image": "Base_Game_C1_Tile_04.jpg",
   "orientation": "CCCR",
   "is_starter": false,
-  "quantity": 2 ,
+  "quantity": 2,
   "features": [
     {
       "type": "city",
       "description": "East City",
-      "sockets": [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      "shield": true
+      "sockets": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "shield": true,
+      "meeple_pos": [
+        0.722,
+        0.507
+      ]
     },
     {
       "type": "road",
       "description": "City Access Road",
-      "sockets": [10]
+      "sockets": [
+        10
+      ],
+      "meeple_pos": [
+        0.127,
+        0.462
+      ]
     },
     {
       "type": "field",
       "description": "North West Field",
-      "sockets": [11]
+      "sockets": [
+        11
+      ],
+      "meeple_pos": [
+        0.088,
+        0.298
+      ]
     },
     {
       "type": "field",
       "description": "South West Field",
-      "sockets": [9]
+      "sockets": [
+        9
+      ],
+      "meeple_pos": [
+        0.11,
+        0.632
+      ]
     }
   ]
 }

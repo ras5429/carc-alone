@@ -8,23 +8,55 @@
     {
       "type": "city",
       "description": "Corner City (North and East)",
-      "sockets": [0, 1, 2, 3, 4, 5],
-      "shield": false
+      "sockets": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "shield": false,
+      "meeple_pos": [
+        0.777,
+        0.17
+      ]
     },
     {
       "type": "road",
       "description": "Curved Road (South to West)",
-      "sockets": [7, 10]
+      "sockets": [
+        7,
+        10
+      ],
+      "meeple_pos": [
+        0.245,
+        0.62
+      ]
     },
     {
       "type": "field",
       "description": "Inner Meadow (Between City and Road)",
-      "sockets": [6, 11]
+      "sockets": [
+        6,
+        11
+      ],
+      "meeple_pos": [
+        0.462,
+        0.548
+      ]
     },
     {
       "type": "field",
       "description": "Outer SW Meadow (Outside Road curve)",
-      "sockets": [8, 9]
+      "sockets": [
+        8,
+        9
+      ],
+      "meeple_pos": [
+        0.148,
+        0.802
+      ]
     }
   ]
 }

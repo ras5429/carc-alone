@@ -5,19 +5,32 @@ from models import Tile
 def copy_features(features):
     return [{"type": f["type"], "edges": list(f["edges"]), "meeple_pos": f.get("meeple_pos"), "shield": f.get("shield", False)} for f in features]
 
-def get_feature_center(feature):
-    if feature.get('meeple_pos'): return tuple(feature['meeple_pos'])
-    if not feature.get('edges'): return (0.5, 0.5)
-    pts = {0:(0.15,0.05), 1:(0.5,0.05), 2:(0.85,0.05), 3:(0.95,0.15), 4:(0.95,0.5), 5:(0.95,0.85), 
-           6:(0.85,0.95), 7:(0.5,0.95), 8:(0.15,0.95), 9:(0.05,0.85), 10:(0.05,0.5), 11:(0.05,0.15)}
-    if feature['type'] == ROAD:
-        raw_x, raw_y = pts[feature['edges'][0]]
-        return (raw_x * 0.75 + 0.5 * 0.25, raw_y * 0.75 + 0.5 * 0.25)
-    coords = [pts[s] for s in feature['edges']]
-    avg_x, avg_y = sum(c[0] for c in coords)/len(coords), sum(c[1] for c in coords)/len(coords)
-    if feature['type'] == FIELD:
-        avg_x, avg_y = avg_x * 0.7 + 0.5 * 0.3, avg_y * 0.7 + 0.5 * 0.3
-    return (avg_x, avg_y)
+def get_feature_center(feature, rotation=0):
+    # Get base coordinates (either from calibrated meeple_pos or calculated fallback)
+    if feature.get('meeple_pos'):
+        fx, fy = feature['meeple_pos']
+    elif not feature.get('edges'):
+        fx, fy = (0.5, 0.5)
+    else:
+        pts = {0:(0.15,0.05), 1:(0.5,0.05), 2:(0.85,0.05), 3:(0.95,0.15), 4:(0.95,0.5), 5:(0.95,0.85), 
+               6:(0.85,0.95), 7:(0.5,0.95), 8:(0.15,0.95), 9:(0.05,0.85), 10:(0.05,0.5), 11:(0.05,0.15)}
+        if feature['type'] == ROAD:
+            raw_x, raw_y = pts[feature['edges'][0]]
+            fx, fy = (raw_x * 0.75 + 0.5 * 0.25, raw_y * 0.75 + 0.5 * 0.25)
+        else:
+            coords = [pts[s] for s in feature['edges']]
+            fx, fy = sum(c[0] for c in coords)/len(coords), sum(c[1] for c in coords)/len(coords)
+            if feature['type'] == FIELD:
+                fx, fy = fx * 0.7 + 0.5 * 0.3, fy * 0.7 + 0.5 * 0.3
+
+    # Apply rotation transform to the chosen coordinates
+    if rotation == 90:
+        return (1 - fy, fx)
+    elif rotation == 180:
+        return (1.0 - fx, 1.0 - fy)
+    elif rotation == 270:
+        return (fy, 1 - fx)
+    return (fx, fy)
 
 def create_full_game_deck():
     assets_dir = "assets"
@@ -70,18 +83,11 @@ def create_full_game_deck():
         except Exception as err:
             skipped_tiles.append(f"{filename} (Error: {err})")
 
-    print("--- TILE QUANTITY BREAKDOWN (From JSON) ---")
-    for name, count in sorted(tile_counts.items()):
-        print(f"  {name}: {count}")
-    print("------------------------------------------")
-    
     if skipped_tiles:
-        print("--- SKIPPED TILES (Errors/Missing Files) ---")
         for reason in skipped_tiles:
-            print(f"  !! {reason}")
-        print("--------------------------------------------")
+            print(f"WARN: skipped tile — {reason}")
 
-    print(f"DECK LOADED: {total_loaded_count} total tiles (including starter).")
+    print(f"DECK LOADED: {total_loaded_count} tiles.")
     random.shuffle(deck)
     return deck, starter_tile
 

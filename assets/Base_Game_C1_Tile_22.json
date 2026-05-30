@@ -8,17 +8,44 @@
     {
       "type": "road",
       "description": "Straight Road (East to West)",
-      "sockets": [4, 10]
+      "sockets": [
+        4,
+        10
+      ],
+      "meeple_pos": [
+        0.43,
+        0.442
+      ]
     },
     {
       "type": "field",
       "description": "North Meadow",
-      "sockets": [0, 1, 2, 3, 11]
+      "sockets": [
+        0,
+        1,
+        2,
+        3,
+        11
+      ],
+      "meeple_pos": [
+        0.383,
+        0.203
+      ]
     },
     {
       "type": "field",
       "description": "South Meadow",
-      "sockets": [5, 6, 7, 8, 9]
+      "sockets": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "meeple_pos": [
+        0.422,
+        0.727
+      ]
     }
   ]
 }

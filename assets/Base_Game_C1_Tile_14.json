@@ -8,13 +8,35 @@
     {
       "type": "city",
       "description": "North City Cap",
-      "sockets": [0, 1, 2],
-      "shield": false
+      "sockets": [
+        0,
+        1,
+        2
+      ],
+      "shield": false,
+      "meeple_pos": [
+        0.422,
+        0.103
+      ]
     },
     {
       "type": "field",
       "description": "Large Open Meadow",
-      "sockets": [3, 4, 5, 6, 7, 8, 9, 10, 11]
+      "sockets": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "meeple_pos": [
+        0.415,
+        0.625
+      ]
     }
   ]
 }

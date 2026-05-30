@@ -8,30 +8,85 @@
     {
       "type": "city",
       "description": "North City Cap",
-      "sockets": [0, 1, 2],
-      "shield": false
+      "sockets": [
+        0,
+        1,
+        2
+      ],
+      "shield": false,
+      "meeple_pos": [
+        0.438,
+        0.127
+      ]
     },
     {
       "type": "road",
       "description": "East Road Segment",
-      "sockets": [4]
+      "sockets": [
+        4
+      ],
+      "meeple_pos": [
+        0.718,
+        0.587
+      ]
     },
     {
       "type": "road",
       "description": "South Road Segment",
-      "sockets": [7]
+      "sockets": [
+        7
+      ],
+      "meeple_pos": [
+        0.422,
+        0.778
+      ]
     },
     {
       "type": "road",
       "description": "West Road Segment",
-      "sockets": [10]
+      "sockets": [
+        10
+      ],
+      "meeple_pos": [
+        0.12,
+        0.497
+      ]
     },
     {
       "type": "field",
       "description": "Top Meadow (Under city wall)",
-      "sockets": [3, 11]
+      "sockets": [
+        3,
+        11
+      ],
+      "meeple_pos": [
+        0.527,
+        0.438
+      ]
     },
-    { "type": "field", "description": "SE Meadow", "sockets": [5, 6] },
-    { "type": "field", "description": "SW Meadow", "sockets": [8, 9] }
+    {
+      "type": "field",
+      "description": "SE Meadow",
+      "sockets": [
+        5,
+        6
+      ],
+      "meeple_pos": [
+        0.762,
+        0.797
+      ]
+    },
+    {
+      "type": "field",
+      "description": "SW Meadow",
+      "sockets": [
+        8,
+        9
+      ],
+      "meeple_pos": [
+        0.16,
+        0.797
+      ]
+    }
   ]
 }

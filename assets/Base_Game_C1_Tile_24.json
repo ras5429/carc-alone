@@ -8,42 +8,94 @@
     {
       "type": "road",
       "description": "North Road Segment",
-      "sockets": [1]
+      "sockets": [
+        1
+      ],
+      "meeple_pos": [
+        0.535,
+        0.125
+      ]
     },
     {
       "type": "road",
       "description": "East Road Segment",
-      "sockets": [4]
+      "sockets": [
+        4
+      ],
+      "meeple_pos": [
+        0.792,
+        0.48
+      ]
     },
     {
       "type": "road",
       "description": "South Road Segment",
-      "sockets": [7]
+      "sockets": [
+        7
+      ],
+      "meeple_pos": [
+        0.443,
+        0.793
+      ]
     },
     {
       "type": "road",
       "description": "West Road Segment",
-      "sockets": [10]
+      "sockets": [
+        10
+      ],
+      "meeple_pos": [
+        0.143,
+        0.435
+      ]
     },
     {
       "type": "field",
       "description": "North West Meadow",
-      "sockets": [0, 11]
+      "sockets": [
+        0,
+        11
+      ],
+      "meeple_pos": [
+        0.197,
+        0.175
+      ]
     },
     {
       "type": "field",
       "description": "North East Meadow",
-      "sockets": [2, 3]
+      "sockets": [
+        2,
+        3
+      ],
+      "meeple_pos": [
+        0.728,
+        0.133
+      ]
     },
     {
       "type": "field",
       "description": "South East Meadow",
-      "sockets": [5, 6]
+      "sockets": [
+        5,
+        6
+      ],
+      "meeple_pos": [
+        0.768,
+        0.778
+      ]
     },
     {
       "type": "field",
       "description": "South West Meadow",
-      "sockets": [8, 9]
+      "sockets": [
+        8,
+        9
+      ],
+      "meeple_pos": [
+        0.1,
+        0.722
+      ]
     }
   ]
 }

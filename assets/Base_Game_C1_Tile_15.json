@@ -8,23 +8,55 @@
     {
       "type": "city",
       "description": "North City Cap",
-      "sockets": [0, 1, 2],
-      "shield": false
+      "sockets": [
+        0,
+        1,
+        2
+      ],
+      "shield": false,
+      "meeple_pos": [
+        0.373,
+        0.072
+      ]
     },
     {
       "type": "road",
       "description": "Curved Road (South to West)",
-      "sockets": [7, 10]
+      "sockets": [
+        7,
+        10
+      ],
+      "meeple_pos": [
+        0.318,
+        0.582
+      ]
     },
     {
       "type": "field",
       "description": "Inner Meadow (North/East area)",
-      "sockets": [3, 4, 5, 6, 11]
+      "sockets": [
+        3,
+        4,
+        5,
+        6,
+        11
+      ],
+      "meeple_pos": [
+        0.687,
+        0.467
+      ]
     },
     {
       "type": "field",
       "description": "Outer SW Meadow",
-      "sockets": [8, 9]
+      "sockets": [
+        8,
+        9
+      ],
+      "meeple_pos": [
+        0.153,
+        0.71
+      ]
     }
   ]
 }

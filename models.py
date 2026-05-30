@@ -82,16 +82,17 @@ class Board:
                 feat = tile.features[feat_idx]
                 f_type = feat['type']
 
-                if f_type == 'A': # Abbey
+                if f_type == 'A': # Cloister
                     neighbors = sum(1 for dx in [-1,0,1] for dy in [-1,0,1] if (dx!=0 or dy!=0) and (x+dx, y+dy) in self.grid)
                     if neighbors == 8:
                         points = 9
                         scored_points += points
                         returned_meeples += 1
-                        msg = f"ABBEY COMPLETE: +{points} pts"
+                        msg = f"CLOISTER COMPLETE: +{points} pts"
+                        print(msg, flush=True); log.append(msg)
+                        ret_msg = "  -> 1 meeple returned"
+                        print(ret_msg, flush=True); log.append(ret_msg)
                         new_effects.append(ScoreEffect(msg, x, y))
-                        log.append(msg)
-                        log.append("  -> 1 meeple returned")
                         tile.meeple = None
                 
                 elif f_type in [CITY, ROAD]:
@@ -102,9 +103,10 @@ class Board:
                         f_name = "CITY" if f_type == CITY else "ROAD"
                         
                         if f_type == CITY:
-                            shields = sum(1 for cx, cy, ci in components if self.grid[(cx, cy)].features[ci].get('shield'))
-                            points = (len(unique_tiles) * 2) + (shields * 2)
-                            summary = f"{len(unique_tiles)} tiles, {shields} shields"
+                            # Count every shield symbol found in the city network
+                            shield_count = sum(1 for cx, cy, ci in components if self.grid[(cx, cy)].features[ci].get('shield'))
+                            points = (len(unique_tiles) * 2) + (shield_count * 2)
+                            summary = f"{len(unique_tiles)} tiles, {shield_count} shields"
                         else: # ROAD
                             points = len(unique_tiles)
                             summary = f"{len(unique_tiles)} tiles"
@@ -118,9 +120,10 @@ class Board:
                                     returned_meeples += 1
                                     m_count += 1
                             msg = f"{f_name} CLOSED: +{points} pts ({summary})"
+                            print(msg, flush=True); log.append(msg)
+                            ret_msg = f"  -> {m_count} meeple(s) returned"
+                            print(ret_msg, flush=True); log.append(ret_msg)
                             new_effects.append(ScoreEffect(msg, x, y))
-                            log.append(msg)
-                            log.append(f"  -> {m_count} meeple(s) returned")
                                     
         return scored_points, returned_meeples, new_effects
 
@@ -129,7 +132,8 @@ class Board:
         final_points = 0
         final_effects = []
         
-        log.append("--- FINAL SCORING ---")
+        header = "--- FINAL SCORING ---"
+        print(header, flush=True); log.append(header)
         
         for (x, y), tile in list(self.grid.items()):
             if tile.meeple:
@@ -137,12 +141,12 @@ class Board:
                 feat = tile.features[feat_idx]
                 f_type = feat['type']
                 
-                if f_type == 'A': # Cloister/Abbey
+                if f_type == 'A': # Cloister
                     neighbors = sum(1 for dx in [-1,0,1] for dy in [-1,0,1] if (dx!=0 or dy!=0) and (x+dx, y+dy) in self.grid)
                     points = 1 + neighbors
                     final_points += points
                     msg = f"Incomplete Cloister: +{points} pts"
-                    log.append(msg)
+                    print(msg, flush=True); log.append(msg)
                     final_effects.append(ScoreEffect(msg, x, y))
                 
                 elif f_type in [CITY, ROAD]:
@@ -151,8 +155,9 @@ class Board:
                     
                     if f_type == CITY:
                         # Incomplete cities get 1 pt per tile + 1 pt per shield
-                        shields = sum(1 for cx, cy, ci in components if self.grid[(cx, cy)].features[ci].get('shield'))
-                        points = len(unique_tiles) + shields
+                        # Count unique shield symbols found in the city network
+                        shield_count = sum(1 for cx, cy, ci in components if self.grid[(cx, cy)].features[ci].get('shield'))
+                        points = len(unique_tiles) + shield_count
                         f_name = "City"
                     else: # ROAD
                         points = len(unique_tiles)
@@ -160,7 +165,7 @@ class Board:
                         
                     final_points += points
                     msg = f"Incomplete {f_name}: +{points} pts"
-                    log.append(msg)
+                    print(msg); log.append(msg)
                     final_effects.append(ScoreEffect(msg, x, y))
                 
                 # Remove meeple to avoid double counting if the same feature has multiple meeples
@@ -168,7 +173,8 @@ class Board:
                 # but this keeps it simple for a single player version)
                 tile.meeple = None
                 
-        log.append(f"TOTAL FINAL SCORE: {final_points}")
+        footer = f"TOTAL FINAL SCORE: {final_points}"
+        print(footer); log.append(footer)
         return final_points, final_effects
 
     def is_feature_occupied(self, x, y, feature_index, visited=None):

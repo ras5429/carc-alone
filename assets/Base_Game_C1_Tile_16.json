@@ -8,25 +8,55 @@
     {
       "type": "city",
       "description": "North City Cap",
-      "sockets": [0, 1, 2],
-      "shield": false
+      "sockets": [
+        0,
+        1,
+        2
+      ],
+      "shield": false,
+      "meeple_pos": [
+        0.467,
+        0.117
+      ]
     },
     {
       "type": "field",
       "description": "Field A (North of road)",
-      "sockets": [3, 11],
-      "meeple_pos": [0.5, 0.3]
+      "sockets": [
+        3,
+        11
+      ],
+      "meeple_pos": [
+        0.29,
+        0.335
+      ]
     },
     {
       "type": "road",
       "description": "East-West Road Bridge",
-      "sockets": [4, 10],
-      "meeple_pos": [0.5, 0.5]
+      "sockets": [
+        4,
+        10
+      ],
+      "meeple_pos": [
+        0.472,
+        0.425
+      ]
     },
     {
       "type": "field",
       "description": "Field B (South of road)",
-      "sockets": [5, 6, 7, 8, 9]
+      "sockets": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "meeple_pos": [
+        0.453,
+        0.698
+      ]
     }
   ]
 }
